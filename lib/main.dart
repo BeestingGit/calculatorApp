@@ -26,6 +26,22 @@ class _CalculatorHomePageState extends State<CalculatorHomePage> {
   double operand2 = 0;
   String operator = '';
 
+  // Handles numerical button clicks
+  void numClick(String text) {
+    setState(() {
+      display += text;
+    });
+  }
+
+  // Handles operator button clicks
+  void operatorClick(String text) {
+    setState(() {
+      operand1 = double.parse(display);
+      operator = text;
+      display = '';
+    });
+  }
+
   // Adding the button menu, uses Container, Column and Row.
   @override
   Widget build(BuildContext context) {
@@ -93,9 +109,9 @@ class _CalculatorHomePageState extends State<CalculatorHomePage> {
           } else if (text == '=') {
             // will be calculate();
           } else if ('+-*/'.contains(text)) {
-            // will be operatorClick(text);
+            operatorClick(text);
           } else {
-            // will be numClick(text);
+            numClick(text);
           }
         },
         child: Container(
