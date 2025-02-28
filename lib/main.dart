@@ -52,6 +52,28 @@ class _CalculatorHomePageState extends State<CalculatorHomePage> {
     });
   }
 
+  // Calculate function to actually do math
+  void calculate() {
+    setState(() {
+      operand2 = double.parse(display);
+      switch (operator) {
+        case '+':
+          display = (operand1 + operand2).toString();
+          break;
+        case '-':
+          display = (operand1 - operand2).toString();
+          break;
+        case '*':
+          display = (operand1 * operand2).toString();
+          break;
+        case '/':
+          // Checks for division by zero too.
+          display = operand2 != 0 ? (operand1 / operand2).toString() : 'Error';
+          break;
+      }
+    });
+  }
+
   // Adding the button menu, uses Container, Column and Row.
   @override
   Widget build(BuildContext context) {
@@ -117,7 +139,7 @@ class _CalculatorHomePageState extends State<CalculatorHomePage> {
           if (text == 'C') {
             clear();
           } else if (text == '=') {
-            // will be calculate();
+            calculate();
           } else if ('+-*/'.contains(text)) {
             operatorClick(text);
           } else {
