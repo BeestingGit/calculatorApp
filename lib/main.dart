@@ -42,6 +42,16 @@ class _CalculatorHomePageState extends State<CalculatorHomePage> {
     });
   }
 
+  // Clear function so you can reset the calculator
+  void clear() {
+    setState(() {
+      display = '';
+      operand1 = 0;
+      operand2 = 0;
+      operator = '';
+    });
+  }
+
   // Adding the button menu, uses Container, Column and Row.
   @override
   Widget build(BuildContext context) {
@@ -105,7 +115,7 @@ class _CalculatorHomePageState extends State<CalculatorHomePage> {
           // Using the text on the button for the function calls
           // Still haven't added the functions though
           if (text == 'C') {
-            // will be clear();
+            clear();
           } else if (text == '=') {
             // will be calculate();
           } else if ('+-*/'.contains(text)) {
